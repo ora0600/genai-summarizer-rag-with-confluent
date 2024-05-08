@@ -8,8 +8,8 @@ topic = 'cv-summaries'
 
 # Configure Kafka Producer
 producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],  # List of Kafka broker addresses
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')  # Serializer for the message data
+    bootstrap_servers=['localhost:9092'], 
+    value_serializer=lambda v: json.dumps(v).encode('utf-8') 
 )
 
 def main():
@@ -22,16 +22,21 @@ def main():
         st.write("File Details:")
         st.write(f"File Name: {uploaded_file.name}")
         st.write(f"File Type: {file_extension}")
-        text = confluent_genai.load_and_process_with_ai(uploaded_file.name)
-        print("Show loading document:")
-        print(text)
-        st.write("Resume Summary:")
-        st.text_area("Text", text, height=400)
-        if text:
-            # Produce to Kafka
-            producer.send(topic, text)
-            # Wait for all messages to be sent
-            producer.flush()
+        
+        try:
+            # Process with the AI function
+            text = confluent_genai.load_and_process_with_ai(uploaded_file.name)
+            st.write("Resume Summary:")
+            st.text_area("Text", text, height=400)
+
+            if text:
+                # Produce to Kafka
+                producer.send(topic, text)
+                producer.flush()
+                st.success("Message sent successfully to topic cv-summaries!")
+        except Exception as e:
+            st.error(f"Processing or message sending error: {e}")
+        finally:
             producer.close()
         
 if __name__ == "__main__":

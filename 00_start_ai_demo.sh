@@ -30,6 +30,11 @@ chmod ugo+w data/
 chmod ugo+w error/
 chmod ugo+w finished/
 
+echo "*************************************************************************************************************"
+echo "For STP Connnector Remote Login (MacOS) need to be enabled. Did you enable it? If yes, continue with ENTER..."
+echo "Press Enter to continue..."
+read a
+
 # Start connector
 confluent local services connect connector load BinaryCVSFTP-Connector --config jsonsftp.properties
 # Status Connector
