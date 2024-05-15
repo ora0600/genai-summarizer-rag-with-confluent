@@ -86,6 +86,20 @@ To work with UI go to [http://localhost:8501/](http://localhost:8501/)
 
 Play around and have fun (-:
 
+After you have all documents uploaded you can work with a conversational Chatbot and ask the database for CV contents. Just run the ChatBot UI:
+
+```bash 
+streamlit run cv-query.py server.port 8502
+```
+You could query the following questions:
+* Do we have a candidate, who is Java Developer? What is the name and what are the skills, and last company?
+* Which Candidate would be a best fit for a Solution Engineer knowing lot of Kafka, Java and Sales? What is the name of the candidate and what are the skills, and last company?
+
+The conversational chatbot ( click [chatbot-link](http://localhost:8502/))which is running on the same Vector DB looks like this:
+![Demo terminals](img/cv-conversational-chatbot.png)
+
+Just play around with your questions, this is pretty much fun.
+
 # Delete Demo
 
 run the following command:
