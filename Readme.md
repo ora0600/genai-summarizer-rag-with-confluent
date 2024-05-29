@@ -109,3 +109,13 @@ run the following command:
 ```
 
 Don't forget to switch off, Remote Login.
+
+# Troubleshooting:
+
+## Can't instantiate abstract class BaseLanguageModel with abstract methods agenerate_prompt, generate_prompt (type=type_error)
+
+If you got this error, please upgrade langchain. Solution: do install a upgrade:
+
+```bash
+pip3 install --upgrade langchain
+```
